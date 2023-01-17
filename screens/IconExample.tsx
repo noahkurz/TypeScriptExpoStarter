@@ -12,6 +12,7 @@ import {RouteProp} from '@react-navigation/core';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../App';
 import { SimpleLineIcons } from '@expo/vector-icons'; 
+import { Icon } from 'native-base';
 
 //#region navigation
 type ScreenNavigationProp<
@@ -32,7 +33,7 @@ type Props<T extends keyof RootStackParamList> = {
 const IconExample: React.FC<Props<'IconExample'>> = () => (
     <View>
       <Text>this is an icon page!</Text>
-      <SimpleLineIcons name="social-reddit" size={24} color="black" />
+      <Icon as={<SimpleLineIcons name="social-reddit"/>} color='red' size={'lg'}/>
     </View>
   );
 

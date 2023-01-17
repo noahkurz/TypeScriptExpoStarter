@@ -36,7 +36,7 @@ function getAsyncData() {
 
 const AsyncDataLoadExample: React.FC<Props<'AsyncDataLoadExample'>> = () => {
 
-    const [imageSource, setImageSource] = useState("");
+    const [result, setResult] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -44,7 +44,7 @@ const AsyncDataLoadExample: React.FC<Props<'AsyncDataLoadExample'>> = () => {
         fetch('https://imdb-api.com/en/API/SearchMovie/k_kjc6z6rg/jaws')
         .then((response) => response.json())
         .then((responseJson) => {
-          setImageSource(responseJson.results[0].description);
+          setResult(responseJson.results[0].description);
           setIsLoading(false);
         })
         .catch((error) => {
@@ -56,7 +56,7 @@ const AsyncDataLoadExample: React.FC<Props<'AsyncDataLoadExample'>> = () => {
     <View>
       <Text>This is a page that shows async data!</Text>
       <ActivityIndicator animating={isLoading}/>
-      <Text>{imageSource}</Text>
+      <Text>{result}</Text>
     </View>)
 };
 

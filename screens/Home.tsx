@@ -43,24 +43,6 @@ const Item = ({ title }: ItemProps) => (
 
 export const HomeScreen: React.FC<Props<'HomeScreen'>> = ({ navigation }) => {
 
-  //tells navigation what screen is doing the sending
-  //const navigation = useNavigation<homeScreenProp>();
-  //initilizes an array of unspecified length (very similar to a List<>) with three items
-  const [coffeeTypes, setNewCoffeeTypes] = useState([
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'rand coffee 1',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'rand coffee 2',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'rand coffee 3',
-    },
-  ])
-
   //To use recoil (global state variables) all we need to do is follow the react hook example. We follow a very similar syntax and we initilize a getter and a setter 
   //around our count variable. The only difference between recoil state and a react hook is the second half of the statement. We can see we say useRECOILstate rather than useState
   //we then pass in countState which is our state object we have in countState.tsx
@@ -89,11 +71,20 @@ export const HomeScreen: React.FC<Props<'HomeScreen'>> = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate('AsyncDataLoadExample')}>
           <Item title={`Navigate to a page that loads async data`} />
         </TouchableOpacity>
+        {/* Navigate to a page that shows how to import icons and use native base*/}
         <TouchableOpacity onPress={() => navigation.navigate('IconExample')}>
           <Item title={`Navigate to a page that shows icons!`} />
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('SqLiteExample')}>
+          <Item title={`Navigate to a page that uses SqLite!`} />
+        </TouchableOpacity>
+        {/* Navigate to a page to see how to work with dynamically changing lists*/}
         <TouchableOpacity onPress={() => navigation.navigate('AddListExample')}>
           <Item title={`Navigate to a page where you can add to a flat list and modify global state`} />
+        </TouchableOpacity>
+        {/* Navigate to a page that takes user input*/}
+        <TouchableOpacity onPress={() => navigation.navigate('EntryExample')}>
+          <Item title={`Navigate to a page where you can take user input!`} />
         </TouchableOpacity>
         {/* Navigate to a new page while passing in a variable*/}
         <TouchableOpacity onPress={() => navigation.navigate('PassedInVarExample', {

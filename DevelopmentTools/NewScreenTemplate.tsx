@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -8,9 +8,10 @@ import {
   StatusBar,
   Button,
 } from 'react-native';
-import {RouteProp} from '@react-navigation/core';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../App';
+import { RouteProp } from '@react-navigation/core';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../App';
+import * as NativeBase from 'native-base'
 
 //#region navigation
 type ScreenNavigationProp<
@@ -27,18 +28,20 @@ type Props<T extends keyof RootStackParamList> = {
 };
 //#endregion
 
-// const CHANGE-ME-Example: React.FC<Props<'CHANGE-ME'>> = () => (
+// const CHANGE-ME-EXAMPLE: React.FC<Props<'CHANGE-ME-EXAMPLE'>> = () => {
+//   return (
 //     <View>
 //       <Text>this is an example page</Text>
 //     </View>
-//   );
+//   )
+// };
 
-//   export default CHANGE-ME-Example;
+// export default CHANGE-ME-EXAMPLE;
 
 //#region Styles
-const styles =   {
+const styles = {
   container: {
-  backgroundColor: "#FF0000"
-}
+    backgroundColor: "#FF0000"
+  }
 }
 //#endregion
