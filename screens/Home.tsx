@@ -11,9 +11,11 @@ import {
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../App';
+import { RouteProp } from '@react-navigation/core';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useRecoilState } from 'recoil';
 import { countState } from '../RecoilStates/CountState';
-import {RouteProp} from '@react-navigation/core';
+
 //#region Navigation
 type ScreenNavigationProp<
   T extends keyof RootStackParamList
@@ -39,7 +41,7 @@ const Item = ({ title }: ItemProps) => (
   </View>
 );
 
-export const HomeScreen: React.FC<Props<'HomeScreen'>> = ({navigation}) => {
+export const HomeScreen: React.FC<Props<'HomeScreen'>> = ({ navigation }) => {
 
   //tells navigation what screen is doing the sending
   //const navigation = useNavigation<homeScreenProp>();
@@ -47,33 +49,22 @@ export const HomeScreen: React.FC<Props<'HomeScreen'>> = ({navigation}) => {
   const [coffeeTypes, setNewCoffeeTypes] = useState([
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'Peru Light Roast',
+      title: 'rand coffee 1',
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Columbian Dark Roast',
+      title: 'rand coffee 2',
     },
     {
       id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Milwaukee Medium Roast',
+      title: 'rand coffee 3',
     },
   ])
-
 
   //To use recoil (global state variables) all we need to do is follow the react hook example. We follow a very similar syntax and we initilize a getter and a setter 
   //around our count variable. The only difference between recoil state and a react hook is the second half of the statement. We can see we say useRECOILstate rather than useState
   //we then pass in countState which is our state object we have in countState.tsx
   const [count, setCount] = useRecoilState(countState);
-
-  const RandomCoffeeAdd = () => {
-    const randNum = Math.floor(Math.random() * 100) + 1
-    setCount(count + 1) //this updates our recoil state 
-    return {
-      id: randNum.toString(),
-      title: `${randNum} coffee`
-    }
-  }
-
 
   return (
     //This is a component that is in the safe area of the screen, it displays a flatList which is a list of elementa that renders new items as they apear rather than the whole list at once
@@ -81,39 +72,37 @@ export const HomeScreen: React.FC<Props<'HomeScreen'>> = ({navigation}) => {
     //Things get interesting at render item. That is a method that destructures every element of the "DATA" param so we can look at each one, very similar to a foreach. 
     // We then use an anon method to render it as our Item const above assigning the title var with our items title
     <SafeAreaView style={styles.container}>
-
-      <FlatList
-        data={coffeeTypes}
-        renderItem={({ item }) =>
-          <Item title={item.title} />}
-        keyExtractor={item => item.id}/>
-
-      {/* navigate to our navigation example string (route is defined on app.tsx) */}
-      <TouchableOpacity onPress={() => navigation.navigate('NavigationExample')}>
-        <Item title='Navigation Example!' />
-      </TouchableOpacity>
-      {/* navigate to our recoil example page. We can also see us accessing our recoil state on this page. */}
-      <TouchableOpacity onPress={() => navigation.navigate('RecoilExample')}>
-        <Item title={`Click here to see this state -> ${count} on a new page!`} />
-      </TouchableOpacity>
-      {/* Navigate to a page that uses native base*/}
-      <TouchableOpacity onPress={() => navigation.navigate('NativeBaseExample')}>
-        <Item title={`Navigate to a Native Base page!!`} />
-      </TouchableOpacity>
-      {/* Navigate to a page that calls async data*/}
-      <TouchableOpacity onPress={() => navigation.navigate('AsyncDataLoadExample')}>
-        <Item title={`Navigate to a page that loads async data`} />
-      </TouchableOpacity>
-      {/* Navigate to a new page while passing in a variable*/}
-      <TouchableOpacity onPress={() => navigation.navigate('PassedInVarExample', {
-        passedInVar: "hello world!",
-      })
-      }>
-        <Item title='Passing Variable Example! ' />
-      </TouchableOpacity>
-      <Button title='ADD +' color="red" onPress={() => {
-        setNewCoffeeTypes([...coffeeTypes, RandomCoffeeAdd()])
-      }}></Button>
+      <ScrollView>
+        {/* navigate to our navigation example string (route is defined on app.tsx) */}
+        <TouchableOpacity onPress={() => navigation.navigate('NavigationExample')}>
+          <Item title='Navigation Example!' />
+        </TouchableOpacity>
+        {/* navigate to our recoil example page. We can also see us accessing our recoil state on this page. */}
+        <TouchableOpacity onPress={() => navigation.navigate('RecoilExample')}>
+          <Item title={`Click here to see this state -> ${count} on a new page!`} />
+        </TouchableOpacity>
+        {/* Navigate to a page that uses native base*/}
+        <TouchableOpacity onPress={() => navigation.navigate('NativeBaseExample')}>
+          <Item title={`Navigate to a Native Base page!!`} />
+        </TouchableOpacity>
+        {/* Navigate to a page that calls async data*/}
+        <TouchableOpacity onPress={() => navigation.navigate('AsyncDataLoadExample')}>
+          <Item title={`Navigate to a page that loads async data`} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('IconExample')}>
+          <Item title={`Navigate to a page that shows icons!`} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('AddListExample')}>
+          <Item title={`Navigate to a page where you can add to a flat list and modify global state`} />
+        </TouchableOpacity>
+        {/* Navigate to a new page while passing in a variable*/}
+        <TouchableOpacity onPress={() => navigation.navigate('PassedInVarExample', {
+          passedInVar: "hello world!",
+        })
+        }>
+          <Item title='Passing Variable Example! ' />
+        </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 };

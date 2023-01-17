@@ -5,6 +5,8 @@ import RecoilExample from './screens/RecoilExample';
 import PassedInVarExample from './screens/PassedInVarExample';
 import NativeBaseExample from './screens/NativeBaseExample';
 import AsyncDataLoadExample from './screens/AsyncDataLoadExample';
+import IconExample from './screens/IconExample';
+import AddListExample from './screens/AddListExample';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { RecoilRoot } from 'recoil';
@@ -18,6 +20,8 @@ export type RootStackParamList = {
   RecoilExample: undefined;
   NativeBaseExample: undefined;
   AsyncDataLoadExample: undefined;
+  IconExample: undefined;
+  AddListExample: undefined;
   PassedInVarExample:
   {
     passedInVar: string;
@@ -42,6 +46,8 @@ const MyStack = () => {
             <Stack.Screen name="PassedInVarExample" component={PassedInVarExample} />
             <Stack.Screen name="NativeBaseExample" component={NativeBaseExample} />
             <Stack.Screen name="AsyncDataLoadExample"component={AsyncDataLoadExample}/>
+            <Stack.Screen name="IconExample" component={IconExample}/>
+            <Stack.Screen name="AddListExample" component={AddListExample}/>
           </Stack.Navigator>
         </NavigationContainer>
       </RecoilRoot>
