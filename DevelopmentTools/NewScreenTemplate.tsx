@@ -12,6 +12,7 @@ import { RouteProp } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../App';
 import * as NativeBase from 'native-base'
+import { TextInput } from 'react-native-gesture-handler';
 
 //#region navigation
 type ScreenNavigationProp<

@@ -1,3 +1,5 @@
+//https://docs.expo.dev/versions/latest/sdk/sqlite/
+//NOTE: This does not seem like expos prefered way of doing things. support seems lackluster at best. Their polished prefered way of doing things can be seen on AsyncStorageExample.tsx
 import React, { useState, Component, useEffect } from 'react';
 import {
     SafeAreaView,
@@ -56,16 +58,17 @@ const SqLiteExample: React.FC<Props<'SqLiteExample'>> = () => {
 
     function addName() {
         setIsLoading(true)
+        console.log(isLoading)
         db.transaction(tx => {
-            tx.executeSql('INSERT INTO names (name) values (?)', [currentName],
+            tx.executeSql('INSERT INTO names (name) values (?)', [currentName],//the question mark syntax here protexts against sql injection. That essentially states 
+            //that this is a variable placeholder. Sql injection would only be possible if I was using interpolation here.
+            
                 (txObj, resultSet) => {
                     let existingNames = [...names];
                     if (resultSet.insertId != undefined) {
                         existingNames.push({ id: resultSet.insertId, name: currentName });
                         setNames(existingNames);
                         setCurrentName('');
-                        
-                        
                     }
                 }
             );
@@ -74,24 +77,27 @@ const SqLiteExample: React.FC<Props<'SqLiteExample'>> = () => {
     }
 
     useEffect(() => {
-        console.log(`is loading ${isLoading}`)
-        db.transaction((tx) => {
-            tx.executeSql("CREATE TABLE IF NOT EXISTS NAMES (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);");
-        });
-        db.transaction((tx) => {
-            tx.executeSql('SELECT * FROM names', [],
-                (txObj, resultSet) => setNames(resultSet.rows._array));
-        });
+        const fetchData = () => {
+            db.transaction((tx) => {
+                tx.executeSql("CREATE TABLE IF NOT EXISTS NAMES (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT);");
+            });
+            db.transaction((tx) => {
+                tx.executeSql('SELECT * FROM names', [],
+                    (txObj, resultSet) => setNames(resultSet.rows._array));
+            });
+        }
+        console.log(isLoading)
+        fetchData();
         setIsLoading(false);
     }, []);
 
-if(isLoading){
-    return (
-        <View>
-            <Text>Loading...</Text>
-        </View>
-    )
-}
+    if (isLoading) {
+        return (
+            <View>
+                <Text>Loading...</Text>
+            </View>
+        )
+    }
 
     return (
 

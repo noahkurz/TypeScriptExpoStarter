@@ -1,3 +1,4 @@
+//https://medium.com/edonec/getting-started-with-react-navigation-in-react-native-typescript-f4343bc7e373
 import React from 'react';
 import {
   SafeAreaView,

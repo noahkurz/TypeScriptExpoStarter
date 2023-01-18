@@ -86,6 +86,14 @@ export const HomeScreen: React.FC<Props<'HomeScreen'>> = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate('EntryExample')}>
           <Item title={`Navigate to a page where you can take user input!`} />
         </TouchableOpacity>
+        {/* Navigate to a page that stores data in a secure manor using key value pairs*/}
+        <TouchableOpacity onPress={() => navigation.navigate('SecureStorageExample')}>
+          <Item title={`Navigate to a page where you can use secure storage!`} />
+        </TouchableOpacity>
+        {/* Navigate to a page that stores data in a secure manor using key value pairs*/}
+        <TouchableOpacity onPress={() => navigation.navigate('AsyncStorageExample')}>
+          <Item title={`Navigate to a page where you can use async storage!`} />
+        </TouchableOpacity>
         {/* Navigate to a new page while passing in a variable*/}
         <TouchableOpacity onPress={() => navigation.navigate('PassedInVarExample', {
           passedInVar: "hello world!",
