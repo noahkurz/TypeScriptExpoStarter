@@ -11,6 +11,7 @@ import SqLiteExample from './screens/SqLiteExample';
 import EntryExample from './screens/EntryExample';
 import SecureStorageExample from './screens/SecureStorageExample';
 import AsyncStorageExample from './screens/AsyncStorageExample';
+import StylingExample from './screens/StylingExample';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { RecoilRoot } from 'recoil';
@@ -31,6 +32,7 @@ export type RootStackParamList = {
   SecureStorageExample: undefined;
   WatermelonDbExample: undefined;
   AsyncStorageExample: undefined;
+  StylingExample: undefined;
   PassedInVarExample:
   {
     passedInVar: string;
@@ -61,6 +63,7 @@ const MyStack = () => {
             <Stack.Screen name="EntryExample" component={EntryExample}/>
             <Stack.Screen name="SecureStorageExample" component={SecureStorageExample}/>
             <Stack.Screen name="AsyncStorageExample" component={AsyncStorageExample}/>
+            <Stack.Screen name="StylingExample" component={StylingExample}/>
           </Stack.Navigator>
         </NavigationContainer>
       </RecoilRoot>

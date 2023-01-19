@@ -1,3 +1,5 @@
+//flex: https://reactnative.dev/docs/flexbox
+//text scaling: https://github.com/GeekyAnts/NativeBase/issues/1022
 import React, { useState } from 'react';
 import {
   SafeAreaView,
@@ -30,20 +32,22 @@ type Props<T extends keyof RootStackParamList> = {
 };
 //#endregion
 
-// const CHANGE-ME-EXAMPLE: React.FC<Props<'CHANGE-ME-EXAMPLE'>> = () => {
-//   return (
-//     <View>
-//       <Text>this is an example page</Text>
-//     </View>
-//   )
-// };
+const StylingExample: React.FC<Props<'StylingExample'>> = () => {
+  return (
+    <View style={GlobalStyles.container}>
 
-// export default CHANGE-ME-EXAMPLE;
+    
+        <View style={GlobalStyles.box1}>
+            {/* This happens using the 'TextScale.tsx' file.  */}
+            <Text style={GlobalStyles.textExample}>This is text that scales to different screens</Text>
+        </View>
+        <View style={GlobalStyles.box2}>
+            <Text> this is a box that should take up 66 percent of the screen</Text>
+            {/* This happens because there are a total of 3 flex boxes in this container and the bottom one is assigned to 2 (or 66 percent) */}
+        </View>
+        </View>
+        
+  )
+};
 
-//#region Styles
-const localStyles = {
-  container: {
-    backgroundColor: "#FF0000"
-  }
-}
-//#endregion
+export default StylingExample;
