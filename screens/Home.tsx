@@ -54,6 +54,7 @@ export const HomeScreen: React.FC<Props<'HomeScreen'>> = ({ navigation }) => {
     //Things get interesting at render item. That is a method that destructures every element of the "DATA" param so we can look at each one, very similar to a foreach. 
     // We then use an anon method to render it as our Item const above assigning the title var with our items title
     <SafeAreaView style={styles.container}>
+      {/* A scroll view is safe to use here because we have a set number of elemnts (this list length is static) */}
       <ScrollView>
         {/* navigate to our navigation example string (route is defined on app.tsx) */}
         <TouchableOpacity onPress={() => navigation.navigate('NavigationExample')}>

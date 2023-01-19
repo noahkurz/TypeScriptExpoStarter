@@ -77,6 +77,7 @@ const AddListExample: React.FC<Props<'AddListExample'>> = () => {
     //#endregion
     return (
         <View>
+            {/* We want to use a flat list here because the list length can change and be dynamic. This is much more performant in these scenarios */}
             <FlatList
                 data={coffeeTypes}
                 renderItem={({ item }) =>
