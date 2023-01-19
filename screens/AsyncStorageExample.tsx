@@ -43,7 +43,7 @@ const AsyncStorageExample: React.FC<Props<'AsyncStorageExample'>> = () => {
     const KEY = "KEY";
 
 
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [newName, setNewName] = useState('');
     const [currentId, setCurrentId] = useState(1);
     const [asyncSotrageResultId, setAsyncStorageResultId] = useState(0);
